@@ -22,7 +22,7 @@ return {
               exe = 'rubocop',
               args = {
                 '--fix-layout',
-                '--autocorrect-all',
+                '--autocorrect',
                 '--stdin',
                 util.escape_path(util.get_current_buffer_file_name()),
                 '--format',
@@ -33,12 +33,8 @@ return {
             }
           end,
         },
-        lua = {
-          require('formatter.filetypes.lua').stylua,
-        },
-        ['*'] = {
-          require('formatter.filetypes.any').remove_trailing_whitespace,
-        },
+        lua   = { require('formatter.filetypes.lua').stylua },
+        ['*'] = { require('formatter.filetypes.any').remove_trailing_whitespace },
       },
     })
   end
