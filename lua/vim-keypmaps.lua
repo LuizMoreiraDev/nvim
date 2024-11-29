@@ -10,7 +10,7 @@ vim.keymap.set('n', '<leader>ev', ':vsplit ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>rv', ':source ~/.config/nvim/init.lua<CR>')
 
 -- gets the current file path
-vim.keymap.set('n', '<leader>cp', ':let @+ = expand("%")<CR>')
+vim.keymap.set('n', '<leader>cp', ':let @+ = expand("%:.")<CR>')
 
 -- copy and paste
 vim.keymap.set('v', 'y', '"+y')

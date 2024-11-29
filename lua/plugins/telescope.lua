@@ -8,6 +8,9 @@ return {
 
       telescope.setup {
         defaults = {
+          layout_config = {
+            horizontal = { height = 0.7, width = 0.8 },
+          },
           mappings = {
             i = {
               ['<esc>'] = require('telescope.actions').close,
@@ -19,14 +22,18 @@ return {
       telescope.load_extension('fzy_native')
 
       vim.keymap.set('n', '<leader>p', builtin.find_files, {})
-      vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
+      vim.keymap.set('n', '<leader>r', builtin.live_grep, {})
       vim.keymap.set('n', '<leader>b', builtin.buffers, {})
       vim.cmd('nnoremap <Leader>ja :Telescope find_files search_dirs=["./app"]<CR>')
       vim.cmd('nnoremap <Leader>jl :Telescope find_files search_dirs=["./lib"]<CR>')
+      vim.cmd('nnoremap <Leader>jc :Telescope find_files search_dirs=["./app/controllers"]<CR>')
+      vim.cmd('nnoremap <Leader>je :Telescope find_files search_dirs=["./app/entities"]<CR>')
       vim.cmd('nnoremap <Leader>jm :Telescope find_files search_dirs=["./app/models"]<CR>')
-      vim.cmd('nnoremap <Leader>js :Telescope find_files search_dirs=["./spec"]<CR>')
-    end
-  },
+      vim.cmd('nnoremap <Leader>js :Telescope find_files search_dirs=["./app/services"]<CR>')
+      vim.cmd('nnoremap <Leader>jv :Telescope find_files search_dirs=["./app/views"]<CR>')
+      vim.cmd('nnoremap <Leader>jx :Telescope find_files search_dirs=["./spec"]<CR>')
+    end,
+  }
   -- {
   --   'nvim-telescope/telescope-ui-select.nvim',
   --   config = function()

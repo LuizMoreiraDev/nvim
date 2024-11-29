@@ -12,12 +12,12 @@ return {
       window             = {
         width = 70,
         mappings = {
-          ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = false } },
+          ["P"] = { "toggle_preview", config = { use_float = false, use_image_nvim = false } },
         },
       },
     })
 
-    vim.keymap.set('n', '<leader>k', ':Neotree toggle float<CR>')
-    vim.keymap.set('n', '<leader>n', ':Neotree toggle reveal float<CR>')
+    vim.keymap.set('n', '<leader>k', ':Neotree toggle<CR>')
+    vim.keymap.set('n', '<leader>n', ':Neotree reveal<CR>')
   end
 }
