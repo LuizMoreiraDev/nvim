@@ -1,2 +1,4 @@
 {
+  "solargraph.useBundler": true,
+  "solargraph.bundlerPath": "/Users/luizclaudiomoreira/.local/share/mise/shims/bundle"
 }

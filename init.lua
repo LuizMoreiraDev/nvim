@@ -19,4 +19,4 @@ require('vim-keypmaps')
 
 vim.g.copilot_no_tab_map = true
 vim.cmd('hi NeotreeNormal guibg=NONE ctermbg=NONE')
-vim.cmd('let g:rails_projections = { "lib/samantha/samantha/*.rb": { "test": ["spec/samantha/{}_spec.rb"] }, "spec/samantha/*_spec.rb": { "alternate": ["lib/samantha/samantha/{}.rb"] }, "app/api/gotidy_api/*.rb": { "test": ["spec/api/{}_spec.rb"] }, "spec/api/*_spec.rb": { "alternate": ["app/api/gotidy_api/{}.rb"] } }')
+vim.cmd('let g:rails_projections = { "lib/samantha/samantha/*.rb": { "test": ["spec/samantha/{}_spec.rb"] }, "lib/nigel/*.rb": { "test": ["spec/nigel/{}_spec.rb"] }, "spec/samantha/*_spec.rb": { "alternate": ["lib/samantha/samantha/{}.rb"] }, "spec/nigel/*_spec.rb": { "alternate": ["lib/nigel/{}.rb"] },  "app/api/gotidy_api/*.rb": { "test": ["spec/api/{}_spec.rb"] }, "app/controllers/api/*.rb": { "test": ["spec/api/{}_spec.rb"] }, "spec/api/*_spec.rb": { "alternate": ["app/api/{}.rb", "app/controllers/api/{}.rb", "app/api/gotidy_api/{}.rb"] } }')
