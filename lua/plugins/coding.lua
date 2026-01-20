@@ -1,26 +1,38 @@
 return {
   -- Treesitter (syntax highlighting)
+  -- Optional: requires tree-sitter-cli 0.26.1+ and a C compiler
+  -- In containers without these, nvim will work fine with basic syntax highlighting
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
     build = ':TSUpdate',
-    dependencies = {
-      'RRethy/nvim-treesitter-endwise', -- auto-close end in Ruby/Lua
-    },
+    cond = function()
+      -- Only load if tree-sitter-cli is available and recent enough
+      local handle = io.popen('tree-sitter --version 2>/dev/null')
+      if not handle then return false end
+      local result = handle:read('*a')
+      handle:close()
+      if not result or result == '' then return false end
+
+      -- Check version >= 0.26.1
+      local major, minor, patch = result:match('tree%-sitter%s+(%d+)%.(%d+)%.(%d+)')
+      if not major then return false end
+      major, minor, patch = tonumber(major), tonumber(minor), tonumber(patch or 0)
+      return major > 0 or (major == 0 and minor > 26) or (major == 0 and minor == 26 and patch >= 1)
+    end,
     config = function()
-      require('nvim-treesitter.configs').setup({
-        ensure_installed = {
-          'lua',
-          'ruby',
-          'sql',
-          'html',
-          'css',
-          'scss',
-          'javascript',
-          'typescript',
-        },
-        highlight = { enable = true },
-        indent = { enable = true },
-        endwise = { enable = true },
+      local languages = { 'lua', 'ruby', 'sql', 'html', 'css', 'scss', 'javascript', 'typescript' }
+      local ts = require('nvim-treesitter')
+
+      ts.setup()
+      ts.install(languages)
+
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = languages,
+        callback = function()
+          vim.treesitter.start()
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
       })
     end,
   },
